@@ -1,5 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) installed
+- and [logged in](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli)
 
 No requirements.
 
