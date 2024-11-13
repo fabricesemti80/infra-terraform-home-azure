@@ -9,8 +9,8 @@ locals {
 terraform {
   backend "azurerm" {
         resource_group_name  = "tfstate"
-        storage_account_name = local.sa_name
-        container_name       = local.ct_name
+        storage_account_name = "tfstatestorageaccountfs" # local.sa_name
+        container_name       = "tfstate" # local.ct_name
         key                  = "terraform.tfstate"
     }
 }
@@ -33,6 +33,6 @@ resource "azurerm_storage_account" "tfstate" {
 resource "azurerm_storage_container" "tfstate" {
   depends_on = [ azurerm_storage_account.tfstate ]
   name                  = local.ct_name
-  storage_account_name  = azurerm_storage_account.tfstate.name
+  storage_account_id  = azurerm_storage_account.tfstate.id
   container_access_type = "blob"
 }
