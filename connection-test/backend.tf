@@ -1,14 +1,32 @@
-## 1. Comment-out the backend-block and run "terraform apply" => this will create the storage account and the storage container
-## 2. Uncomment the backend-block and run `terraform init --migrate-state' to migrate the state file to the storage account
-## 3. Start using terraform as normal
+##? LOCAL backend? 
+## --> COMMENT the `backend "azurerm" {)` blocks - this is the default setting, so no definition required
+## MUST do this for the initial setup !!
+
+##? AZURERM backend?
+## UNCOMMENT the `backend "azurerm" {)` block (ensure there is no other contradicting blocks!)
+
+##? REMOTE backend?
+## UNCOMMENT the `backend "remote" {}` block (ensure there is no other contradicting blocks!)
+## https://app.terraform.io - obtain and update your organization and workspace 
+## execute `terraform login` (will generate an API key, or you can use existing one maybe...)
+
+#! To change between backends, after each modification run `terraform init -migrate-state`
 
 
 terraform {
-  backend "azurerm" {
-    resource_group_name  = "tfstate-rg"
-    storage_account_name = "tfstatestorageaccountfs" # local.sa_name
-    container_name       = "tfstate"                 # local.ct_name
-    key                  = "terraform.tfstate"
+
+  # backend "azurerm" {
+  #   resource_group_name  = "tfstate-rg"
+  #   storage_account_name = "tfstatestorageaccountfs" # local.sa_name
+  #   container_name       = "tfstate"                 # local.ct_name
+  #   key                  = "terraform.tfstate"
+  # }
+
+  backend "remote" {
+    organization = "homelab-fsemti" # org name from step 2.
+    workspaces {
+      name = "clouds-az" # name for your app's state.
+    }
   }
 }
 
