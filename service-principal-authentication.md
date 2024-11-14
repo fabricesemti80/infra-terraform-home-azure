@@ -13,39 +13,23 @@
 ## Modify the provider config
 
 ```hcl
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.9.0"
+    }
+  }
+}
 provider "azurerm" {
   features {}
-  subscription_id = var.subscription_id
-  tenant_id       = var.tenant_id
-  client_id       = var.client_id
-  client_secret   = var.client_secret
+  use_msi = false
 }
 ```
 
-## Ensure the variables are decared
+>important:
+> `use_msi` should **only be set to `true`** when the provider uses **managed service identity** (see more on this [here](https://github.com/hashicorp/terraform/issues/30549#issuecomment-1149136303) )
 
-```hcl
-variable "subscription_id" {
-  type        = string
-  description = "Azure Subscription ID"
-}
-
-variable "tenant_id" {
-  type        = string
-  description = "Azure Tenant ID"
-}
-
-variable "client_id" {
-  type        = string
-  description = "Azure Client ID"
-}
-
-variable "client_secret" {
-  type        = string
-  description = "Azure Client Secret"
-  sensitive   = true
-}
-```
 
 ## Use these env vars
 
@@ -56,4 +40,6 @@ ARM_CLIENT_ID                           # use `az ad sp show --id $(az ad sp lis
 ARM_CLIENT_SECRET (mark as sensitive)   # shown only at creation, GUI only shows partial (if lost, need to be rotated (?) )
 ```
 ![image](https://github.com/user-attachments/assets/be9b3121-d8b9-4786-8382-d9025ea1737a)
+
+> important: DO NOT declare these variables as terraform-vars! they are going to be recognized by the module **without** this!
 
