@@ -35,8 +35,6 @@ type: Microsoft.ManagedIdentity/userAssignedIdentities
 
 ```powershell
 PS D:\Scripts\terraform\own> az role assignment create --assignee-object-id "$(az identity show --name terraform-msi --resource-group tfid --query principalId -o tsv)" --role Contributor --scope "/subscriptions/$(az account show --query id -o tsv)"
-WARNING: Auto upgrade failed. 'pypi'
-WARNING: Auto upgrade failed. 'pypi'
 RBAC service might reject creating role assignment without --assignee-principal-type in the future. Better to specify --assignee-principal-type manually.
 condition: null
 conditionVersion: null
