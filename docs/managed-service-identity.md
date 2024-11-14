@@ -5,7 +5,7 @@
 ```powershell
 
 PS D:\Scripts\terraform\own> az group create --name "tfid" --location "uksouth"
-id: /subscriptions/f45a9cdc-bf42-4cec-8394-19cf4b3dbbca/resourceGroups/tfid
+id: /subscriptions/<your subscription>/resourceGroups/tfid
 location: uksouth
 managedBy: null
 name: tfid
@@ -19,15 +19,15 @@ type: Microsoft.Resources/resourceGroups
 
 ```powershell
 PS D:\Scripts\terraform\own> az identity create --name "terraform-msi" --resource-group "tfid"
-clientId: 9821deab-fffb-4baf-a028-6814ed5e08ce
-id: /subscriptions/f45a9cdc-bf42-4cec-8394-19cf4b3dbbca/resourcegroups/tfid/providers/Microsoft.ManagedIdentity/userAssignedIdentities/terraform-msi
+clientId: <your clientID>
+id: /subscriptions/<your subscription>/resourcegroups/tfid/providers/Microsoft.ManagedIdentity/userAssignedIdentities/terraform-msi
 location: uksouth
 name: terraform-msi
-principalId: 10929d08-771b-4db4-9fbc-4b4305e5a158
+principalId: <your msi principal>
 resourceGroup: tfid
 systemData: null
 tags: {}
-tenantId: af0666c0-1fa3-4622-9064-d7ac1e569de9
+tenantId: <your tenant>
 type: Microsoft.ManagedIdentity/userAssignedIdentities
 ```
 
@@ -42,14 +42,14 @@ createdBy: null
 createdOn: '2024-11-13T14:54:42.763126+00:00'
 delegatedManagedIdentityResourceId: null
 description: null
-id: /subscriptions/f45a9cdc-bf42-4cec-8394-19cf4b3dbbca/providers/Microsoft.Authorization/roleAssignments/f12af43c-7111-4bf9-bae1-e65b8eddce87
-name: f12af43c-7111-4bf9-bae1-e65b8eddce87
-principalId: 10929d08-771b-4db4-9fbc-4b4305e5a158
+id: /subscriptions/<your subscription>/providers/Microsoft.Authorization/roleAssignments/<your principals GUID>
+name: <your principals GUID>
+principalId: <your msi principal>
 principalType: ServicePrincipal
-roleDefinitionId: /subscriptions/f45a9cdc-bf42-4cec-8394-19cf4b3dbbca/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c
-scope: /subscriptions/f45a9cdc-bf42-4cec-8394-19cf4b3dbbca
+roleDefinitionId: /subscriptions/<your subscription>/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c
+scope: /subscriptions/<your subscription>
 type: Microsoft.Authorization/roleAssignments
-updatedBy: 4ce9f816-8dcf-406a-a488-f25905005d0b
+updatedBy: < user>
 updatedOn: '2024-11-13T14:54:43.128125+00:00'
 ```
 
