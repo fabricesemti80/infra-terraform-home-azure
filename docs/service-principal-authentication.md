@@ -1,6 +1,6 @@
 # Service Principal authentication
 
->note: This is a better way, if you are running Terraform from *outside* of Azure.
+>note: This is the preferred way, if you are running Terraform from *outside* of Azure or plan to do CI/CD
 
 ## Create **service principal**
 
