@@ -22,12 +22,12 @@ terraform {
   #   key                  = "terraform.tfstate"
   # }
 
-  backend "remote" {
-    organization = "homelab-fsemti" # org name from step 2.
-    workspaces {
-      name = "clouds-az" # name for your app's state.
-    }
-  }
+  # backend "remote" {
+  #   organization = "homelab-fsemti" # org name from step 2.
+  #   workspaces {
+  #     name = "clouds-az" # name for your app's state.
+  #   }
+  # }
 }
 
 locals {
@@ -37,25 +37,25 @@ locals {
   rg_location = "West Europe"
 }
 
-resource "azurerm_resource_group" "tfstate" {
-  name     = local.rg_name
-  location = local.rg_location
-}
+# resource "azurerm_resource_group" "tfstate" {
+#   name     = local.rg_name
+#   location = local.rg_location
+# }
 
-resource "azurerm_storage_account" "tfstate" {
-  name                            = local.sa_name
-  resource_group_name             = azurerm_resource_group.tfstate.name
-  location                        = azurerm_resource_group.tfstate.location
-  account_tier                    = "Standard"
-  account_replication_type        = "LRS"
-  allow_nested_items_to_be_public = false
-  public_network_access_enabled   = true
-}
+# resource "azurerm_storage_account" "tfstate" {
+#   name                            = local.sa_name
+#   resource_group_name             = azurerm_resource_group.tfstate.name
+#   location                        = azurerm_resource_group.tfstate.location
+#   account_tier                    = "Standard"
+#   account_replication_type        = "LRS"
+#   allow_nested_items_to_be_public = false
+#   public_network_access_enabled   = true
+# }
 
-resource "azurerm_storage_container" "tfstate" {
-  depends_on         = [azurerm_storage_account.tfstate]
-  name               = local.ct_name
-  storage_account_id = azurerm_storage_account.tfstate.id
-  # storage_account_name  = local.sa_name
-  container_access_type = "private"
-}
+# resource "azurerm_storage_container" "tfstate" {
+#   depends_on         = [azurerm_storage_account.tfstate]
+#   name               = local.ct_name
+#   storage_account_id = azurerm_storage_account.tfstate.id
+#   # storage_account_name  = local.sa_name
+#   container_access_type = "private"
+# }
