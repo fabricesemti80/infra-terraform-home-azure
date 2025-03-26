@@ -39,3 +39,4 @@ terraform.rc
 
 **/.envrc
 .vscode/settings.json
+.alzlib
