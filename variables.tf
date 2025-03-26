@@ -1,7 +1,7 @@
 variable "client_secret" {
     type = string
     description = "The client secret of the service principal"
-    sensitive = true  
+    sensitive = true
 }
 
 variable "client_id" {
